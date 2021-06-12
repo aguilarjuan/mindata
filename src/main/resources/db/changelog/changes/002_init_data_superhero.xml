@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="aguilar">
+        <insert tableName="super_hero">
+            <column name="id" value="1" />
+            <column name="name" value="superman"/>
+        </insert>
+    </changeSet>
+    <changeSet id="2" author="aguilar">
+        <insert tableName="super_hero">
+            <column name="id" value="2" />
+            <column name="name" value="batman"/>
+        </insert>
+    </changeSet>
+    <changeSet id="3" author="aguilar">
+        <insert tableName="super_hero">
+            <column name="id" value="3" />
+            <column name="name" value="spiderman"/>
+        </insert>
+    </changeSet>
+    <changeSet id="4" author="aguilar">
+        <insert tableName="super_hero">
+            <column name="id" value="4" />
+            <column name="name" value="mujerMaravilla"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
