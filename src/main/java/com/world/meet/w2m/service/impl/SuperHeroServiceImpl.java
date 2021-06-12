@@ -8,6 +8,10 @@ import com.world.meet.w2m.mapper.SuperHeroMapper;
 import com.world.meet.w2m.model.SuperHero;
 import com.world.meet.w2m.repository.SuperHeroRepository;
 import com.world.meet.w2m.service.SuperheroService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +27,9 @@ public class SuperHeroServiceImpl implements SuperheroService
     private final SuperHeroMapper superHeroMapper;
 
 	@Override
+	@Caching(evict = {
+			@CacheEvict(value = "superherosList", allEntries = true),
+			@CacheEvict(value = "superherosPatternList", allEntries = true) })
 	public SuperHeroDto create(SuperHeroDto superHeroDto) throws GenericException
 	{
 		try
@@ -35,6 +42,11 @@ public class SuperHeroServiceImpl implements SuperheroService
 	}
 
 	@Override
+	@Caching(evict = {
+			@CacheEvict(value = "superherosList", allEntries = true),
+			@CacheEvict(value = "superherosPatternList", allEntries = true) },
+			put = {
+			@CachePut(value = "superheros", key = "#superHeroDto.getId()") })
 	public
 	SuperHeroDto update(SuperHeroDto superHeroDto) throws GenericException
 	{
@@ -51,6 +63,7 @@ public class SuperHeroServiceImpl implements SuperheroService
 	}
 
 	@Override
+	@Cacheable(value = "superherosList")
 	public List<SuperHeroDto> findAll() throws GenericException
 	{
 		try
@@ -69,6 +82,11 @@ public class SuperHeroServiceImpl implements SuperheroService
 	}
 
 	@Override
+	@CacheEvict(value = "superheros", allEntries = true)
+	@Caching(evict = {
+			@CacheEvict(value = "superherosList", allEntries = true),
+			@CacheEvict(value = "superheros", allEntries = true) ,
+			@CacheEvict(value = "superherosPatternList", allEntries = true)})
 	public void deleteById(Long id) throws GenericException
 	{
 		try
@@ -81,6 +99,7 @@ public class SuperHeroServiceImpl implements SuperheroService
 	}
 
 	@Override
+	@Cacheable(value = "superheros", key = "#id")
 	public SuperHeroDto findById(Long id) throws GenericException
 	{
 		try
@@ -96,6 +115,7 @@ public class SuperHeroServiceImpl implements SuperheroService
 	}
 
 	@Override
+	@Caching(put = { @CachePut(value = "superherosPatternList", key = "#pattern") })
 	public List<SuperHeroDto> findByPattern(String pattern) throws GenericException
 	{
 		try

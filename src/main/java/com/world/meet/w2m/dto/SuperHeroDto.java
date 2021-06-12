@@ -1,6 +1,8 @@
 package com.world.meet.w2m.dto;
 
-public class SuperHeroDto
+import java.io.Serializable;
+
+public class SuperHeroDto implements Serializable
 {
 
 	private Long id;

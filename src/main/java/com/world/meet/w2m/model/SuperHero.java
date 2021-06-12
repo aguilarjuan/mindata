@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "super_hero")
 @Data
 @AllArgsConstructor @NoArgsConstructor @Builder
-public class SuperHero {
+public class SuperHero implements Serializable
+{
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)

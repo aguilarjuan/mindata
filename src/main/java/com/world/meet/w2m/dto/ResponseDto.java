@@ -1,8 +1,9 @@
 package com.world.meet.w2m.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ResponseDto<T>
+public class ResponseDto<T> implements Serializable
 {
 	private T data;
 	private ErrorDto error;

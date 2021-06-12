@@ -1,7 +1,9 @@
 package com.world.meet.w2m.dto;
 
+import java.io.Serializable;
 
-public class ErrorDto {
+public class ErrorDto implements Serializable
+{
 
 	private String message;
 	private String codeError;
