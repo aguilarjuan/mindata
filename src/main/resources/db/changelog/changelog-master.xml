@@ -7,5 +7,7 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <include file="db/changelog/changes/001_create_shema_superhero.xml"/>
-    <include file="db/changelog/changes/002_init_data_superhero.xml"/>
+    <include file="db/changelog/changes/002_create_shema_user.xml"/>
+    <include file="db/changelog/changes/003_init_data_superhero.xml"/>
+    <include file="db/changelog/changes/004_init_data_user.xml"/>
 </databaseChangeLog>

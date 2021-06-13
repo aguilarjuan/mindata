@@ -1,5 +1,6 @@
 package com.world.meet.w2m.controller;
 
+import com.world.meet.w2m.annotation.ExecutionTimeMetric;
 import com.world.meet.w2m.dto.ErrorDto;
 import com.world.meet.w2m.dto.ResponseDto;
 import com.world.meet.w2m.dto.SuperHeroDto;
@@ -98,6 +99,7 @@ public class SuperHeroController
 		}
 	}
 
+	@ExecutionTimeMetric
 	@GetMapping(path = "/superHero/pattern/{pattern}", produces =  MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> findByPatter(@PathVariable String pattern){
 		ResponseDto<List<SuperHeroDto>> responseDto =  new ResponseDto<>();
@@ -117,6 +119,7 @@ public class SuperHeroController
 
 	}
 
+	@ExecutionTimeMetric
 	@GetMapping(path = "/superHero", produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<?> findAll(){
 

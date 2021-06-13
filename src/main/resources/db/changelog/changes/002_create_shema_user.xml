@@ -8,18 +8,27 @@
 
     <changeSet id="01" author="aguilar">
 
-        <createTable tableName="super_hero">
+        <createTable tableName="user">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints nullable="false" unique="true" primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(20)">
+            <column name="username" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="role" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="token" type="varchar(255)">
                 <constraints nullable="true"/>
             </column>
         </createTable>
     </changeSet>
 
     <changeSet id="02" author="aguilar">
-        <createSequence sequenceName="SUPER_HERO_SEQ" incrementBy="1" startValue="5"/>
+        <createSequence sequenceName="USER_SEQ" incrementBy="1" startValue="5"/>
     </changeSet>
 
 </databaseChangeLog>
