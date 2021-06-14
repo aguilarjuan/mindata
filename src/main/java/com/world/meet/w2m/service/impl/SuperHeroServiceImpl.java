@@ -1,6 +1,6 @@
-package com.world.meet.w2m.impl;
+package com.world.meet.w2m.service.impl;
 
-import com.world.meet.w2m.SuperheroService;
+import com.world.meet.w2m.service.SuperheroService;
 import com.world.meet.w2m.dto.SuperHeroDto;
 import com.world.meet.w2m.exception.GenericException;
 import com.world.meet.w2m.exception.ProviderDataBaseException;

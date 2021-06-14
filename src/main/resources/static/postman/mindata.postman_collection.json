@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "33a47bf8-ce27-49a8-9e27-f7df9e5ff6f6",
+		"name": "mindata",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/v1/management/superHero/pattern/man",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJtaW5kYXRhSldUIiwic3ViIjoianVjYWd1aWxhciIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MjM3MDUxMDIsImV4cCI6MTYyMzcwNTcwMn0.z3ssDajuATx0ZNQMkz0EvI1WWNxOEZjkiMXiGB2gBvMDoNJosY9Elc5EMOX5XP6RL2M38uMx0H6V3rh2eJiMOA"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/management/superHero/pattern/man",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"management",
+						"superHero",
+						"pattern",
+						"man"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/api/v1/management/superHero/12",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJtaW5kYXRhSldUIiwic3ViIjoianVjYWd1aWxhciIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MjM3MDUxMDIsImV4cCI6MTYyMzcwNTcwMn0.z3ssDajuATx0ZNQMkz0EvI1WWNxOEZjkiMXiGB2gBvMDoNJosY9Elc5EMOX5XP6RL2M38uMx0H6V3rh2eJiMOA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":12, \n    \"name\": \"robin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/management/superHero/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"management",
+						"superHero",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/api/v1/management/superHero",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJtaW5kYXRhSldUIiwic3ViIjoianVjYWd1aWxhciIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MjM3MDUyNjIsImV4cCI6MTYyMzcwNTg2Mn0.n8AoFectUhry5w8o7OtVaNbpN87Hv2QpzrmoQpsKqK174UPPpvGyP7v0u3Z0BLtNDIneoya8Bgyarjgu-lNFUg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":2, \n    \"name\": \"robin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/management/superHero",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"management",
+						"superHero"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/authentication/token?user=jucaguilar&password=user123",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/authentication/token?user=jucaguilar&password=user123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"authentication",
+						"token"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "jucaguilar"
+						},
+						{
+							"key": "password",
+							"value": "user123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/api/v1/management/superHero/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJtaW5kYXRhSldUIiwic3ViIjoianVjYWd1aWxhciIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MjM3MDU1NTUsImV4cCI6MTYyMzcwNjE1NX0.9fUqiEqE5Tdvjf34zV1GAIT1UfYuGCy8syWO4S9ntiGXbNDQmrCXX4NT2hoUHz-MkWBGv9D4eTupZV_QxNmAoA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/management/superHero/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"management",
+						"superHero",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/api/v1/management/superHero/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJtaW5kYXRhSldUIiwic3ViIjoianVjYWd1aWxhciIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2MjM3MDU1NTUsImV4cCI6MTYyMzcwNjE1NX0.9fUqiEqE5Tdvjf34zV1GAIT1UfYuGCy8syWO4S9ntiGXbNDQmrCXX4NT2hoUHz-MkWBGv9D4eTupZV_QxNmAoA",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":6,\"name\":\"marioBros\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/management/superHero/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"management",
+						"superHero",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

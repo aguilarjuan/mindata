@@ -1,6 +1,6 @@
-package com.world.meet.w2m.impl;
+package com.world.meet.w2m.service.impl;
 
-import com.world.meet.w2m.UserService;
+import com.world.meet.w2m.service.UserService;
 import com.world.meet.w2m.dto.UserDto;
 import com.world.meet.w2m.exception.GenericException;
 import com.world.meet.w2m.exception.ProviderDataBaseException;
@@ -10,21 +10,19 @@ import com.world.meet.w2m.mapper.UserMapper;
 import com.world.meet.w2m.model.User;
 import com.world.meet.w2m.repository.UserRepository;
 import com.world.meet.w2m.utils.TokenUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService
 {
 
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 
-	@Autowired
-	private TokenUtils tokenUtils;
+	private final TokenUtils tokenUtils;
 
-	@Autowired
-	private UserMapper userMapper;
+	private final UserMapper userMapper;
 
 	@Override
 	public UserDto validateUser(String username, String password) throws GenericException

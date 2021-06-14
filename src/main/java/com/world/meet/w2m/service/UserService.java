@@ -1,4 +1,4 @@
-package com.world.meet.w2m;
+package com.world.meet.w2m.service;
 
 import com.world.meet.w2m.dto.UserDto;
 import com.world.meet.w2m.exception.GenericException;
