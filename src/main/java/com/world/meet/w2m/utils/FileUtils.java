@@ -3,6 +3,8 @@ package com.world.meet.w2m.utils;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Component
 public class FileUtils
@@ -38,6 +40,8 @@ public class FileUtils
 	}
 
 	private String getPath(){
-		return "/home/juancarlosaguilar/Desktop/java-11/w2m/src/main/resources/logs/metric.txt";
+		Path path = Paths.get("");
+		String directoryName = path.toAbsolutePath().toString();
+		return directoryName + "/src/main/resources/logs/metric.txt";
 	}
 }

@@ -8,8 +8,8 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
     <changeSet id="1" author="aguilar">
         <insert tableName="user">
             <column name="id" value="1" />
-            <column name="username" value="admin"/>
-            <column name="password" value="admin123"/>
+            <column name="username" value="jucaguilar"/>
+            <column name="password" value="user123"/>
             <column name="role" value="ROLE_USER"/>
             <column name="token" value=""/>
         </insert>
@@ -17,8 +17,8 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
     <changeSet id="2" author="aguilar">
         <insert tableName="user">
             <column name="id" value="2" />
-            <column name="username" value="jucaguilar"/>
-            <column name="password" value="user123"/>
+            <column name="username" value="admin"/>
+            <column name="password" value="admin123"/>
             <column name="role" value="ROLE_ADMIN"/>
             <column name="token" value=""/>
         </insert>

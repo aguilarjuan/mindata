@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  superheros-service:
+    build: .
+    restart: always
+    container_name: superherocontainer
+    ports:
+      - 8080:8080
+    working_dir: /opt/app
+    depends_on:
+      - redis
+  redis:
+    image: redis:latest
+    container_name: rediscontainer
+    command: redis-server --appendonly yes
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data:/data
+    restart: always

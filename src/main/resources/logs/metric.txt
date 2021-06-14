@@ -1,5 +1,2 @@
-
-execution(SuperHeroController.findByPatter(..)) executed in 191ms
-execution(SuperHeroController.findByPatter(..)) executed in 5ms
-execution(SuperHeroController.findAll()) executed in 628ms
-execution(SuperHeroController.findAll()) executed in 4ms
+execution(SuperHeroController.findAll()) executed in 670ms
+execution(SuperHeroController.findAll()) executed in 3ms
