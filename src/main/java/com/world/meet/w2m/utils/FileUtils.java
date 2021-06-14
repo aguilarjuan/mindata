@@ -1,5 +1,6 @@
 package com.world.meet.w2m.utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -43,5 +44,13 @@ public class FileUtils
 		Path path = Paths.get("");
 		String directoryName = path.toAbsolutePath().toString();
 		return directoryName + "/src/main/resources/logs/metric.txt";
+	}
+
+	public String asJsonString(Object obj) {
+		try {
+			return new ObjectMapper().writeValueAsString(obj);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

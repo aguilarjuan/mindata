@@ -2,13 +2,11 @@ package com.world.meet.w2m.controller;
 
 import com.world.meet.w2m.dto.ErrorDto;
 import com.world.meet.w2m.dto.ResponseDto;
-import com.world.meet.w2m.dto.SuperHeroDto;
 import com.world.meet.w2m.dto.UserDto;
 import com.world.meet.w2m.exception.GenericException;
-import com.world.meet.w2m.service.UserService;
+import com.world.meet.w2m.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

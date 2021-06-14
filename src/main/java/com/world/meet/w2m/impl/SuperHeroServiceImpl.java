@@ -1,5 +1,6 @@
-package com.world.meet.w2m.service.impl;
+package com.world.meet.w2m.impl;
 
+import com.world.meet.w2m.SuperheroService;
 import com.world.meet.w2m.dto.SuperHeroDto;
 import com.world.meet.w2m.exception.GenericException;
 import com.world.meet.w2m.exception.ProviderDataBaseException;
@@ -7,7 +8,6 @@ import com.world.meet.w2m.exception.SuperHeroNotFoundException;
 import com.world.meet.w2m.mapper.SuperHeroMapper;
 import com.world.meet.w2m.model.SuperHero;
 import com.world.meet.w2m.repository.SuperHeroRepository;
-import com.world.meet.w2m.service.SuperheroService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -54,6 +54,8 @@ public class SuperHeroServiceImpl implements SuperheroService
 		{
 			SuperHero entityCurrent = this.superHeroRepository.findById(superHeroDto.getId()).orElseThrow(() ->
 					new SuperHeroNotFoundException(SuperHeroNotFoundException.MESSAGE,SuperHeroNotFoundException.ERROR_CODE));
+				    entityCurrent.setName(superHeroDto.getName());
+			        this.superHeroRepository.save(entityCurrent);
 			return this.superHeroMapper.toDto(this.superHeroMapper.updateEntity(entityCurrent));
 		} catch (SuperHeroNotFoundException e){
 			throw e;

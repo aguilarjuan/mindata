@@ -1,12 +1,13 @@
-package com.world.meet.w2m.service;
+package com.world.meet.w2m.unit;
 
+import com.world.meet.w2m.SuperheroService;
 import com.world.meet.w2m.dto.SuperHeroDto;
 import com.world.meet.w2m.exception.GenericException;
 import com.world.meet.w2m.exception.SuperHeroNotFoundException;
+import com.world.meet.w2m.impl.SuperHeroServiceImpl;
 import com.world.meet.w2m.mapper.SuperHeroMapper;
 import com.world.meet.w2m.model.SuperHero;
 import com.world.meet.w2m.repository.SuperHeroRepository;
-import com.world.meet.w2m.service.impl.SuperHeroServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

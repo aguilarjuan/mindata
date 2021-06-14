@@ -5,7 +5,7 @@ import com.world.meet.w2m.dto.ErrorDto;
 import com.world.meet.w2m.dto.ResponseDto;
 import com.world.meet.w2m.dto.SuperHeroDto;
 import com.world.meet.w2m.exception.GenericException;
-import com.world.meet.w2m.service.SuperheroService;
+import com.world.meet.w2m.SuperheroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -89,7 +89,7 @@ public class SuperHeroController
 			responseDto.setData(dto);
 			responseDto.setStatusCode(HttpStatus.OK.toString());
 
-			return new ResponseEntity<>(responseDto, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(responseDto, HttpStatus.OK);
 
 		} catch (GenericException e){
 			ErrorDto errorDto = new ErrorDto(e.getMessage(), e.getErrorCode());

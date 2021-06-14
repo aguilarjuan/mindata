@@ -1,5 +1,6 @@
-package com.world.meet.w2m.service.impl;
+package com.world.meet.w2m.impl;
 
+import com.world.meet.w2m.UserService;
 import com.world.meet.w2m.dto.UserDto;
 import com.world.meet.w2m.exception.GenericException;
 import com.world.meet.w2m.exception.ProviderDataBaseException;
@@ -8,13 +9,13 @@ import com.world.meet.w2m.exception.UserCredentialException;
 import com.world.meet.w2m.mapper.UserMapper;
 import com.world.meet.w2m.model.User;
 import com.world.meet.w2m.repository.UserRepository;
-import com.world.meet.w2m.service.UserService;
 import com.world.meet.w2m.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService
+{
 
 	@Autowired
 	private UserRepository userRepository;
