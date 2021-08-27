@@ -1,5 +1,6 @@
 package com.world.meet.w2m.service.impl;
 
+import com.world.meet.w2m.dto.ResponseDto;
 import com.world.meet.w2m.service.SuperheroService;
 import com.world.meet.w2m.dto.SuperHeroDto;
 import com.world.meet.w2m.exception.GenericException;
@@ -12,6 +13,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,11 +32,16 @@ public class SuperHeroServiceImpl implements SuperheroService
 	@Caching(evict = {
 			@CacheEvict(value = "superherosList", allEntries = true),
 			@CacheEvict(value = "superherosPatternList", allEntries = true) })
-	public SuperHeroDto create(SuperHeroDto superHeroDto) throws GenericException
+	public ResponseDto<SuperHeroDto>  create(SuperHeroDto superHeroDto) throws GenericException
 	{
 		try
 		{
-			return superHeroMapper.toDto(this.superHeroRepository.save(this.superHeroMapper.toEntity(superHeroDto)));
+			ResponseDto<SuperHeroDto> responseDto =  new ResponseDto<>();
+			SuperHeroDto dto = superHeroMapper.toDto(this.superHeroRepository.save(this.superHeroMapper.toEntity(superHeroDto)));
+			responseDto.setData(dto);
+			responseDto.setStatusCode(HttpStatus.OK.toString());
+			return responseDto;
+
 		} catch (Exception e){
 			throw new ProviderDataBaseException(ProviderDataBaseException.MESSAGE,ProviderDataBaseException.ERROR_CODE);
 		}
@@ -48,7 +55,7 @@ public class SuperHeroServiceImpl implements SuperheroService
 			put = {
 			@CachePut(value = "superheros", key = "#superHeroDto.getId()") })
 	public
-	SuperHeroDto update(SuperHeroDto superHeroDto) throws GenericException
+	ResponseDto<SuperHeroDto> update(SuperHeroDto superHeroDto) throws GenericException
 	{
 		try
 		{
@@ -56,7 +63,12 @@ public class SuperHeroServiceImpl implements SuperheroService
 					new SuperHeroNotFoundException(SuperHeroNotFoundException.MESSAGE,SuperHeroNotFoundException.ERROR_CODE));
 				    entityCurrent.setName(superHeroDto.getName());
 			        this.superHeroRepository.save(entityCurrent);
-			return this.superHeroMapper.toDto(this.superHeroMapper.updateEntity(entityCurrent));
+			ResponseDto<SuperHeroDto> responseDto =  new ResponseDto<>();
+			SuperHeroDto dto =  this.superHeroMapper.toDto(this.superHeroMapper.updateEntity(entityCurrent));
+			responseDto.setData(dto);
+			responseDto.setStatusCode(HttpStatus.OK.toString());
+			return responseDto;
+
 		} catch (SuperHeroNotFoundException e){
 			throw e;
 		} catch (Exception e){
@@ -66,16 +78,19 @@ public class SuperHeroServiceImpl implements SuperheroService
 
 	@Override
 	@Cacheable(value = "superherosList")
-	public List<SuperHeroDto> findAll() throws GenericException
+	public ResponseDto<List<SuperHeroDto>> findAll() throws GenericException
 	{
 		try
 		{
-			List<SuperHeroDto> response = new ArrayList<>();
+			List<SuperHeroDto> dto = new ArrayList<>();
 			List<SuperHero> entityList = this.superHeroRepository.findAll();
 		for (SuperHero superHero : entityList ){
-			response.add(this.superHeroMapper.toDto(superHero));
+			dto.add(this.superHeroMapper.toDto(superHero));
 		}
-			return response;
+			ResponseDto<List<SuperHeroDto>> responseDto =  new ResponseDto<>();
+			responseDto.setData(dto);
+			responseDto.setStatusCode(HttpStatus.OK.toString());
+			return responseDto;
 
 		} catch (Exception e){
 			throw new ProviderDataBaseException(ProviderDataBaseException.MESSAGE,ProviderDataBaseException.ERROR_CODE);
@@ -89,11 +104,15 @@ public class SuperHeroServiceImpl implements SuperheroService
 			@CacheEvict(value = "superherosList", allEntries = true),
 			@CacheEvict(value = "superheros", allEntries = true) ,
 			@CacheEvict(value = "superherosPatternList", allEntries = true)})
-	public void deleteById(Long id) throws GenericException
+	public ResponseDto<String> deleteById(Long id) throws GenericException
 	{
 		try
 		{
 			this.superHeroRepository.deleteById(id);
+			ResponseDto<String> responseDto =  new ResponseDto<>();
+			responseDto.setData("borrado exitoso");
+			responseDto.setStatusCode(HttpStatus.OK.toString());
+			return responseDto;
 		} catch (Exception e){
 			throw new ProviderDataBaseException(ProviderDataBaseException.MESSAGE,ProviderDataBaseException.ERROR_CODE);
 		}
@@ -102,13 +121,17 @@ public class SuperHeroServiceImpl implements SuperheroService
 
 	@Override
 	@Cacheable(value = "superheros", key = "#id")
-	public SuperHeroDto findById(Long id) throws GenericException
+	public ResponseDto<SuperHeroDto> findById(Long id) throws GenericException
 	{
 		try
 		{
 			SuperHero entity = this.superHeroRepository.findById(id).orElseThrow(() ->
 					new SuperHeroNotFoundException(SuperHeroNotFoundException.MESSAGE,SuperHeroNotFoundException.ERROR_CODE));
-			return this.superHeroMapper.toDto(entity);
+			SuperHeroDto dto = this.superHeroMapper.toDto(entity);
+			ResponseDto<SuperHeroDto> responseDto =  new ResponseDto<>();
+			responseDto.setData(dto);
+			responseDto.setStatusCode(HttpStatus.OK.toString());
+			return responseDto;
 		} catch (SuperHeroNotFoundException e){
 			throw e;
 		} catch (Exception ex){
@@ -118,18 +141,21 @@ public class SuperHeroServiceImpl implements SuperheroService
 
 	@Override
 	@Caching(put = { @CachePut(value = "superherosPatternList", key = "#pattern") })
-	public List<SuperHeroDto> findByPattern(String pattern) throws GenericException
+	public ResponseDto<List<SuperHeroDto>> findByPattern(String pattern) throws GenericException
 	{
 		try
 		{
-			List<SuperHeroDto> response = new ArrayList<>();
-			List<SuperHero> entityList = this.superHeroRepository.findAll();
+			List<SuperHeroDto> dto = new ArrayList<>();
+			List<SuperHero> entityList = this.superHeroRepository.findByNameContaining(pattern);
 			for (SuperHero superHero : entityList ){
 				 if(superHero.getPattern(pattern)){
-					 response.add(this.superHeroMapper.toDto(superHero));
+					 dto.add(this.superHeroMapper.toDto(superHero));
 				 }
 			}
-			return response;
+			ResponseDto<List<SuperHeroDto>> responseDto =  new ResponseDto<>();
+			responseDto.setData(dto);
+			responseDto.setStatusCode(HttpStatus.OK.toString());
+			return responseDto;
 		} catch (Exception ex){
 			throw new ProviderDataBaseException(ProviderDataBaseException.MESSAGE,ProviderDataBaseException.ERROR_CODE);
 		}

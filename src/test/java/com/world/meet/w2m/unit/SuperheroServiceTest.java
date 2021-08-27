@@ -1,5 +1,6 @@
 package com.world.meet.w2m.unit;
 
+import com.world.meet.w2m.dto.ResponseDto;
 import com.world.meet.w2m.service.SuperheroService;
 import com.world.meet.w2m.dto.SuperHeroDto;
 import com.world.meet.w2m.exception.GenericException;
@@ -64,8 +65,8 @@ class SuperheroServiceTest
 	@Test
 	public void when_findById_Is_Called_With_Correct_id_Then_equal_SuperHero(){
 		try{
-			SuperHeroDto superHeroDto = superheroService.findById(1L);
-			Assertions.assertThat(superHeroDto.getName()).isEqualTo("superman");
+			ResponseDto<SuperHeroDto> superHeroDto = superheroService.findById(1L);
+			Assertions.assertThat(superHeroDto.getData().getName()).isEqualTo("superman");
 		} catch (GenericException e){
 			Assertions.fail("Exception thrown");
 		}
@@ -92,8 +93,8 @@ class SuperheroServiceTest
 	public void when_update_Is_Called_With_Correct_id_Then_Expected_equal_SuperHero(){
 		try{
 			SuperHeroDto dto = new SuperHeroDto(3L,"hulk");;
-			SuperHeroDto superHeroDto = superheroService.update(dto);
-			Assertions.assertThat(superHeroDto.getName()).isEqualTo("hulk");
+			ResponseDto<SuperHeroDto> superHeroDto = superheroService.update(dto);
+			Assertions.assertThat(superHeroDto.getData().getName()).isEqualTo("hulk");
 		} catch (GenericException e){
 			Assertions.fail("Exception thrown");
 		}
@@ -104,8 +105,8 @@ class SuperheroServiceTest
 		try{
 			SuperHeroDto dto = new SuperHeroDto();
 			dto.setName("batman");
-			SuperHeroDto superHeroDto = superheroService.create(dto);
-			Assertions.assertThat(superHeroDto.getName()).isEqualTo("batman");
+			ResponseDto<SuperHeroDto>  superHeroDto = superheroService.create(dto);
+			Assertions.assertThat(superHeroDto.getData().getName()).isEqualTo("batman");
 		} catch (GenericException e){
 			Assertions.fail("Exception thrown");
 		}
@@ -114,8 +115,8 @@ class SuperheroServiceTest
 	@Test
 	public void when_findAll_Is_Called_With_Corrects_parameters_Then_successful(){
 		try{
-		List<SuperHeroDto> superHeroList = superheroService.findAll();
-			Assertions.assertThat(String.valueOf(superHeroList.size())).isEqualTo("3");
+			ResponseDto<List<SuperHeroDto>> superHeroList = superheroService.findAll();
+			Assertions.assertThat(String.valueOf(superHeroList.getData().size())).isEqualTo("3");
 		} catch (GenericException e){
 			Assertions.fail("Exception thrown");
 		}
@@ -124,8 +125,8 @@ class SuperheroServiceTest
 	@Test
 	public void when_findAll_By_Pattern_Is_Called_With_Corrects_Parameters_Then_Successful(){
 		try{
-			List<SuperHeroDto> superHeroList = superheroService.findByPattern("man");
-			Assertions.assertThat(String.valueOf(superHeroList.size())).isEqualTo("2");
+			ResponseDto<List<SuperHeroDto>> superHeroList = superheroService.findByPattern("man");
+			Assertions.assertThat(String.valueOf(superHeroList.getData().size())).isEqualTo("2");
 		} catch (GenericException e){
 			Assertions.fail("Exception thrown");
 		}

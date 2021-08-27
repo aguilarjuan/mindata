@@ -1,5 +1,6 @@
 package com.world.meet.w2m.service.impl;
 
+import com.world.meet.w2m.dto.ResponseDto;
 import com.world.meet.w2m.service.UserService;
 import com.world.meet.w2m.dto.UserDto;
 import com.world.meet.w2m.exception.GenericException;
@@ -11,6 +12,7 @@ import com.world.meet.w2m.model.User;
 import com.world.meet.w2m.repository.UserRepository;
 import com.world.meet.w2m.utils.TokenUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService
 	private final UserMapper userMapper;
 
 	@Override
-	public UserDto validateUser(String username, String password) throws GenericException
+	public 	ResponseDto validateUser(String username, String password) throws GenericException
 	{
 		try
 		{
@@ -34,7 +36,12 @@ public class UserServiceImpl implements UserService
 			String tokenUser = this.tokenUtils.getToken(user);
 			user.setToken(tokenUser);
 			this.userRepository.save(user);
-			return this.userMapper.toDto(user);
+			UserDto dto = this.userMapper.toDto(user);
+			ResponseDto<UserDto> responseDto = new ResponseDto<>();
+			responseDto.setData(dto);
+			responseDto.setStatusCode(HttpStatus.OK.toString());
+			return responseDto;
+
 		} catch (SuperHeroNotFoundException e){
 			throw e;
 		} catch (Exception ex){

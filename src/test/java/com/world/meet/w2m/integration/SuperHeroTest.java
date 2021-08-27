@@ -2,6 +2,7 @@ package com.world.meet.w2m.integration;
 
 import com.jayway.jsonpath.JsonPath;
 import com.world.meet.w2m.MindataApplication;
+import com.world.meet.w2m.dto.ResponseDto;
 import com.world.meet.w2m.service.SuperheroService;
 import com.world.meet.w2m.dto.SuperHeroDto;
 import com.world.meet.w2m.model.SuperHero;
@@ -76,8 +77,8 @@ public class SuperHeroTest {
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.data.id").value(5));
-		SuperHeroDto response = superheroService.findById(5L);
-		Assert.isTrue(response.getName().equals("GreenLantern"),"save superHero = " + response.getName());
+		ResponseDto<SuperHeroDto> response = superheroService.findById(5L);
+		Assert.isTrue(response.getData().getName().equals("GreenLantern"),"save superHero = " + response.getData().getName());
 
 	}
 
@@ -87,7 +88,7 @@ public class SuperHeroTest {
 	public void givenUpdate_superHero_whenMockMVC_thenReturns_Code_200() throws Exception
 	{
 		SuperHero ironman =  SuperHero.builder().id(3L).name("ironman").build();
-		SuperHeroDto beforeSuperHero = superheroService.findById(3L);
+		ResponseDto<SuperHeroDto> beforeSuperHero = superheroService.findById(3L);
 		this.mockMvc.perform(put("/api/v1/management/superHero/")
 				.header("Authorization",this.token)
 				.contentType(MediaType.APPLICATION_JSON)
@@ -135,14 +136,14 @@ public class SuperHeroTest {
 	@Order(6)
 	public void givenDeleteById_superHero_whenMockMVC_thenReturns_Code_200() throws Exception
 	{
-		List<SuperHeroDto> beforeSuperHero = superheroService.findAll();
+		ResponseDto<List<SuperHeroDto>> beforeSuperHero = superheroService.findAll();
 		this.mockMvc.perform(delete("/api/v1/management/superHero/{id}","1")
 				.header("Authorization",this.token))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.data").value("borrado exitoso"));
-		List<SuperHeroDto> afterSuperHero = superheroService.findAll();
-		Assert.isTrue(afterSuperHero.size() == (beforeSuperHero.size() - 1),"current number of superHero = " + afterSuperHero.size());
+		ResponseDto<List<SuperHeroDto>> afterSuperHero = superheroService.findAll();
+		Assert.isTrue(afterSuperHero.getData().size() == (beforeSuperHero.getData().size() - 1),"current number of superHero = " + afterSuperHero.getData().size());
 
 
 	}

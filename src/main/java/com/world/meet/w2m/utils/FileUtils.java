@@ -2,12 +2,14 @@ package com.world.meet.w2m.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Component
+@Slf4j
 public class FileUtils
 {
 	public void writeLog(String data)
@@ -26,7 +28,7 @@ public class FileUtils
 			bw.write(data);
 
 		} catch (IOException e) {
-			System.out.println("error durante la optecion del archivo");
+			log.info("error durante al optener el archivo");
 		} finally {
 			try {
 				if (bw != null)
@@ -34,7 +36,7 @@ public class FileUtils
 				if (fw != null)
 					fw.close();
 			} catch (IOException ex) {
-				System.out.println("error al cerrarn las");
+				log.info("error al cerrar la coneccion");
 			}
 		}
 

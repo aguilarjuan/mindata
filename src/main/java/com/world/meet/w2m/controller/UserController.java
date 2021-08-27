@@ -1,8 +1,6 @@
 package com.world.meet.w2m.controller;
 
-import com.world.meet.w2m.dto.ErrorDto;
 import com.world.meet.w2m.dto.ResponseDto;
-import com.world.meet.w2m.dto.UserDto;
 import com.world.meet.w2m.exception.GenericException;
 import com.world.meet.w2m.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,21 +21,12 @@ public class UserController
 
 	@PostMapping(path = "/token")
     public ResponseEntity<?> validationUser(@RequestParam("user") String username, @RequestParam("password") String pwd){
-        ResponseDto responseDto = new ResponseDto();
 		try
 		{
-			UserDto dto  = this.userService.validateUser(username,pwd);
-			responseDto.setData(dto);
-			responseDto.setStatusCode(HttpStatus.OK.toString());
-
+			ResponseDto responseDto  = this.userService.validateUser(username,pwd);
 			return new ResponseEntity<>(responseDto, HttpStatus.OK);
-
-		} catch (GenericException e)
-		{
-			ErrorDto errorDto = new ErrorDto(e.getMessage(), e.getErrorCode());
-			responseDto.setError(errorDto);
-			responseDto.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
-			return new ResponseEntity<>(responseDto, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (GenericException e) {
+			return GenericException.GenericExceptionResponse(e);
 		}
 	}
 }
